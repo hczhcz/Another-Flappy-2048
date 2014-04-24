@@ -1,0 +1,36 @@
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+  <title>Flappy 2048</title>
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+  <meta name="description" content="What would happen if Flappy Bird merged with the popular game called 2048? Here is your answer!" />
+  <meta property="og:description" content="What would happen if Flappy Bird merged with the popular game called 2048? Here is your answer!" />
+  <meta property="og:type" content="website" />
+  <meta property="og:title" content="Flappy 2048" />
+  <meta property="og:site_name" content="Flappy 2048" />
+  <meta name="viewport" content="user-scalable=no, initial-scale=0.5, width=610, height=1024" />
+</head>
+<body>
+  <style type="text/css">
+    .cellol {
+      -moz-user-select: none;
+      -webkit-user-select: none;
+      -ms-user-select:none;
+      user-select:none;
+    }
+  </style>
+
+  <div id="lgd" style="width: 300px; height: 64px; position: absolute;"></div>
+  <script type='text/javascript'>
+    var lgdiv = document.getElementById('lgd');
+    lgdiv.style.left = Math.floor((window.innerWidth - 300)/2)+'px';
+    lgdiv.style.top = Math.floor((window.innerHeight - 64)/2)+'px';
+    lgdiv.style.fontFamily = 'Verdana';
+    lgdiv.style.fontSize = '16px';
+    lgdiv.style.fontWeight = 'bold';
+    lgdiv.style.textAlign = 'center';
+    lgdiv.innerHTML = 'Loading...';
+  </script>
+
+  <script type='text/javascript' src='flappy2048.js'></script> 
+</body>
+</html>
