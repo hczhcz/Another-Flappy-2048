@@ -1,6 +1,4 @@
 
-var disable_mouse = false;
-
 document.body.style.margin = '0px';
 document.body.style.overflow = 'hidden';
 
@@ -205,20 +203,20 @@ var gameLoaded = function () {
  oef();
  
  
- document.body.onmousedown = function () {
-  if (!disable_mouse) {
-   doFlap();
-  }
+ document.body.onmousedown = function (e) {
+  doFlap();
+  e.preventDefault();
  }
  
  document.body.addEventListener('touchstart', function(e){
-  disable_mouse = true;
-   doFlap();
-  }, false);
+  doFlap();
+  e.preventDefault();
+ }, false);
  
  document.body.onkeydown = function (e) {
   if (e.keyCode == 32) {
    doFlap();
+   e.preventDefault();
   }
  }
  
@@ -391,6 +389,10 @@ gameover.reposition = function () {
  gameover.img.style.left = Math.floor((ww-626)/2)+'px';
  gameover.img.style.top = Math.floor(Math.cos(gameover.fr/32)*0 + (hh - 200 - 144 - 88)/2)+'px';
 }
+gameover.img.addEventListener('click', function () {
+ game.ended = false;
+ doFlap();
+});
 
 
 
@@ -413,10 +415,10 @@ playagain.reposition = function () {
  playagain.img.style.left = Math.floor((ww-252)/2)+'px';
  playagain.img.style.top = Math.floor(Math.cos(playagain.fr/14)*5 + (hh + 320 + 71 - 88)/2)+'px';
 }
-playagain.img.onclick = function () {
+playagain.img.addEventListener('click', function () {
  game.ended = false;
  doFlap();
-}
+});
 
 
 
@@ -450,7 +452,7 @@ sndo.reposition = function () {
  sndo.div.style.left = '6px';
  sndo.div.style.top = Math.floor(hh - 70)+'px';
 }
-sndo.div.onclick = function () {
+sndo.div.addEventListener('click', function () {
  if (sndo.has_sound) {
   sndo.div.style.backgroundPosition = '-64px 0px';
   sndo.has_sound = false;
@@ -458,7 +460,7 @@ sndo.div.onclick = function () {
   sndo.div.style.backgroundPosition = '0px 0px';
   sndo.has_sound = true;
  }
-}
+});
 
 
 
