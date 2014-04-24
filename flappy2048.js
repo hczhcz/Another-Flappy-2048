@@ -480,7 +480,7 @@ parody.div.style.zIndex = 87654;
 
 
 var points = 0;
-var highscore = 0;
+var highscore = parseInt(localStorage.getItem('f2048hi')) | 0;
 
 
 var scpts = [];
@@ -542,7 +542,7 @@ for (var i = 0; i<scpts.length; i++) {
 }
 score.update = function () {
  for (var i = score.divs.length-1; i>=0; i--) {
-  score.divs[i].innerHTML = points;
+  score.divs[i].innerHTML = points + ' / ' + highscore;
  }
 }
 
@@ -1112,6 +1112,10 @@ var oef = function () {
           doubling_cell = clc;
           coin.play();
           points += 1;
+          if (points > highscore) {
+           highscore = points;
+           localStorage.setItem('f2048hi', highscore);
+          }
           score.update();
          }
         }
@@ -1196,6 +1200,7 @@ var oef = function () {
      playagain.showing = true;
      if (points > highscore) {
       highscore = points;
+      localStorage.setItem('f2048hi', highscore);
      }
     }
    }
