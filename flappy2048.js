@@ -22,7 +22,6 @@ document.body.appendChild(game.div);
 
 var deathflash = document.createElement('div');
 deathflash.style.background = '#FF0000';
-deathflash.style.zIndex = 9999999;
 deathflash.style.width = '100%';
 deathflash.style.height = '100%';
 deathflash.style.left = '0px';
@@ -164,7 +163,7 @@ var loadGameSound = function (n, chc) { // file name, channel count
    got_good_sound = true;
    break;
   }
-  if (got_good_sound) {
+  if (ch && ch.sound && got_good_sound) {
    ch.sound.play();
   }
  }
@@ -1194,6 +1193,7 @@ var oef = function () {
      game.end_fr = 0;
      deathflash.style.display = 'inline';
      deathflash.style.opacity = .8;
+     deathflash.style.zIndex = 999999;
      game.started = false;
      game.ended = true;
      gameover.hiding = false;
@@ -1214,6 +1214,7 @@ var oef = function () {
   var op = .8 * (1 - game.end_fr/20);
   if (op < 0) {
    deathflash.style.display = 'none';
+   deathflash.style.zIndex = 0;
   } else {
    deathflash.style.opacity = op;
   }
