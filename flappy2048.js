@@ -418,6 +418,10 @@ playagain.img.addEventListener('click', function () {
  game.ended = false;
  doFlap();
 });
+playagain.img.addEventListener('touchstart', function () {
+ game.ended = false;
+ doFlap();
+});
 
 
 
