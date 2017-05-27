@@ -392,6 +392,10 @@ gameover.img.addEventListener('click', function () {
  game.ended = false;
  doFlap();
 });
+gameover.img.addEventListener('touchstart', function () {
+ game.ended = false;
+ doFlap();
+});
 
 
 
@@ -422,6 +426,8 @@ playagain.img.addEventListener('touchstart', function () {
  game.ended = false;
  doFlap();
 });
+
+
 
 
 
@@ -464,6 +470,16 @@ sndo.div.addEventListener('click', function () {
   sndo.has_sound = true;
  }
 });
+sndo.div.addEventListener('touchstart', function () {
+ if (sndo.has_sound) {
+  sndo.div.style.backgroundPosition = '-64px 0px';
+  sndo.has_sound = false;
+ } else {
+  sndo.div.style.backgroundPosition = '0px 0px';
+  sndo.has_sound = true;
+ }
+});
+
 
 
 
