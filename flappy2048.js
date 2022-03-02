@@ -449,27 +449,38 @@ c2s.reposition = function () {
 var sndo = {};
 sndo.showing = true;
 sndo.hiding = false;
+if (localStorage.sound === undefined) {
+  localStorage.sound = 'true';
+}
+sndo.has_sound = localStorage.sound === 'true';
 sndo.div = document.createElement('div');
 sndo.div.style.backgroundImage = 'url("soundoff.png")';
-sndo.has_sound = true;
 sndo.div.style.position = 'absolute';
 sndo.div.style.width = '64px';
 sndo.div.style.height = '64px';
 sndo.div.innerHTML = '&nbsp;';
 sndo.div.style.zIndex = '144070';
 sndo.reposition = function () {
- sndo.div.style.left = '6px';
- sndo.div.style.top = Math.floor(hh - 70)+'px';
+  sndo.div.style.left = '6px';
+  sndo.div.style.top = Math.floor(hh - 70)+'px';
 }
-sndo.div.addEventListener('click', function () {
- if (sndo.has_sound) {
-  sndo.div.style.backgroundPosition = '-64px 0px';
-  sndo.has_sound = false;
- } else {
+var sndoOnClick = function () {
+  if (sndo.has_sound) {
+    sndo.div.style.backgroundPosition = '-64px 0px';
+    sndo.has_sound = false;
+    localStorage.sound = 'false';
+  } else {
+    sndo.div.style.backgroundPosition = '0px 0px';
+    sndo.has_sound = true;
+    localStorage.sound = 'true';
+  }
+}
+sndo.div.addEventListener('click', sndoOnClick);
+if (sndo.has_sound) {
   sndo.div.style.backgroundPosition = '0px 0px';
-  sndo.has_sound = true;
- }
-});
+} else {
+  sndo.div.style.backgroundPosition = '-64px 0px';
+}
 sndo.div.addEventListener('touchstart', function () {
  if (sndo.has_sound) {
   sndo.div.style.backgroundPosition = '-64px 0px';
